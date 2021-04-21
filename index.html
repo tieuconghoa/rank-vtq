@@ -47,7 +47,7 @@
     }
 
     function renderData(id) {
-        const url = "http://" + window.location.hostname + ":" + window.location.port;
+        const url = "https://" + window.location.hostname + ":" + window.location.port;
         $.getJSON(url + "/api/" + id, function(data) {
             $("#table").empty();
             JSON.parse(data).forEach((item, key) => {
