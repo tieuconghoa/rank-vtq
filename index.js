@@ -15,7 +15,7 @@ const cum14 = "141,142,143,144,145";
 const array = ["0", cum123, cum45, cum67, cum89, cum10, cum11, cum12, cum13, cum14];
 
 var app = express();
-var server = app.listen(5000, () => {
+var server = app.listen(process.env.PORT || 3000, () => {
     console.log("server running!!!");
 })
 
