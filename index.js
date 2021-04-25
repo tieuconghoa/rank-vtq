@@ -44,7 +44,7 @@ app.get("/api/:id", async(req, res) => {
 });
 
 app.get("/oldData", (req, res) => {
-    let rawdata = fs.readFileSync('./data/bxh_1619186400568.json');
+    let rawdata = fs.readFileSync(__dirname+'/data/bxh_1619186400568.json');
     let data = JSON.parse(rawdata);
     res.json(data)
 });
