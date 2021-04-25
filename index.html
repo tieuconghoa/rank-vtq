@@ -10,8 +10,8 @@
 </head>
 
 <body class="container">
-    <div style="width:15%">
-        <select onchange="handleChange(event)" class="form-control">
+    <div class="row">
+        <select style="width:15%" onchange="handleChange(event)" class="form-control col-sm-3">
             <option value="0">cụm 1 + 2 + 3</option>
             <option value="1">cụm 4 + 5</option>
             <option value="2">cụm 6 + 7</option>
@@ -19,6 +19,7 @@
             <option value="4">Cụm 10 + 11</option>
             <option value="5">cụm 12 + 13</option>
         </select>
+        <div class="offset-md-2 col-sm-4 font-weight-bold" style="font-size: 20px" id="digital-clock"></div>
     </div>
     <div class="mt-2 w-100">
         <table class="table table-bordered table-striped " id="usersTable">
@@ -42,7 +43,41 @@
 <script>
     $(document).ready(() => {
         renderData(0);
-    })
+
+    });
+
+    function getDateTime() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var day = now.getDate();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        if (month.toString().length == 1) {
+            month = '0' + month;
+        }
+        if (day.toString().length == 1) {
+            day = '0' + day;
+        }
+        if (hour.toString().length == 1) {
+            hour = '0' + hour;
+        }
+        if (minute.toString().length == 1) {
+            minute = '0' + minute;
+        }
+        if (second.toString().length == 1) {
+            second = '0' + second;
+        }
+        var dateTime = hour + ':' + minute + ':' + second + ' ' + day + '/' + month + '/' + year;
+        return dateTime;
+    }
+
+    // example usage: realtime clock
+    setInterval(function() {
+        currentTime = getDateTime();
+        document.getElementById("digital-clock").innerHTML = currentTime;
+    }, 1000);
 
     function handleChange(event) {
         var id = event.target.value;
