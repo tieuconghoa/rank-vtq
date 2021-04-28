@@ -94,6 +94,9 @@
                     JSON.parse(newData).forEach((itemNew, keyNew) => {
 
                         if (itemOld.name == itemNew.name && itemNew.areaName == itemOld.areaName) {
+                            if (itemNew.name == "CX5 KimLang") {
+                                itemNew.value = parseInt(itemNew.value) + 20000000;
+                            }
                             data.push({
                                 "areaName": itemOld.areaName,
                                 "name": itemOld.name,
