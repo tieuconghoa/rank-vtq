@@ -2,7 +2,6 @@ const axios = require('axios');
 const fs = require("fs");
 const express = require("express");
 const path = require('path');
-// const cron = require('node-cron');
 
 const cum123 = "1,4,9,15,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50";
 const cum45 = "51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,73,74,75";
@@ -37,10 +36,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-// cron.schedule('0 21 * * *', function() {
-//     writeFile()
-//   });
-
 app.get("/api/:id", async(req, res) => {
     var id = req.params.id;
 
@@ -50,6 +45,12 @@ app.get("/api/:id", async(req, res) => {
 
 app.get("/oldData", (req, res) => {
     let rawdata = fs.readFileSync(__dirname+'/data/bxh_1619186400568.json');
+    let data = JSON.parse(rawdata);
+    res.json(data)
+});
+
+app.get("/newData", (req, res) => {
+    let rawdata = fs.readFileSync(__dirname+'/data/bxh_1619618400004.json');
     let data = JSON.parse(rawdata);
     res.json(data)
 });

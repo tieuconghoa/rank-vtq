@@ -29,7 +29,7 @@
                     <th class='text-center'>Tên nhân vật</th>
                     <th class='text-center'>Server</th>
                     <th class='text-center'>Lực chiến 21h 23/04</th>
-                    <th class='text-center'>Lực chiến hiện tại</th>
+                    <th class='text-center'>Lực chiến 21h 28/04</th>
                     <th class='text-center'>Chênh lệch</th>
                 </tr>
             </thead>
@@ -81,6 +81,7 @@
 
     function handleChange(event) {
         var id = event.target.value;
+        console.log(id);
         renderData(id);
     }
 
@@ -88,15 +89,11 @@
         const url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
         var data = [];
         $.getJSON(`${url}/oldData`, oldData => {
-            $.getJSON(`${url}/api/${id}`, function(newData) {
+            $.getJSON(`${url}/newData`, function(newData) {
                 $("#table").empty();
                 oldData[id].forEach((itemOld, keyOld) => {
-                    JSON.parse(newData).forEach((itemNew, keyNew) => {
-
+                    newData[id].forEach((itemNew, keyNew) => {
                         if (itemOld.name == itemNew.name && itemNew.areaName == itemOld.areaName) {
-                            if (itemNew.name == "CX5 KimLang") {
-                                itemNew.value = parseInt(itemNew.value) + 20000000;
-                            }
                             data.push({
                                 "areaName": itemOld.areaName,
                                 "name": itemOld.name,
@@ -120,6 +117,13 @@
             })
         })
 
+        // $.getJSON(`/data/bxh_1619618400004.json`, oldData => {
+        //     $("#table").empty();
+        //     oldData[id].forEach((itemOld, keyOld) => {
+        //         $("#table")
+        //             .append(`<tr class="item"><td class='text-center'>${keyOld+1}</td><td class='text-center'>${itemOld.name}</td><td class='text-center'>${itemOld.areaName}</td><td class='text-center chenh-lenh'>${String(itemOld.value).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</td></tr>`)
+        //     })
+        // })
     }
 </script>
 
