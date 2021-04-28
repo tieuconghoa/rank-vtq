@@ -37,7 +37,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-cron.schedule('4 19 * * *', function() {
+cron.schedule('0 21 * * *', function() {
     writeFile()
   });
 
