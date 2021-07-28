@@ -79,7 +79,7 @@
             $("#loading").hide();
         });
     });
-    const url = window.location.protocol + "//" + window.location.hostname + ":3000";
+    const url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
     var lastestGroup = 0;
     $(document).ready(() => {
         getLastestGroup();
