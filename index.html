@@ -32,7 +32,7 @@
 </head>
 
 <body class="container">
-    <div id="loading" style="display:block">
+    <div id="loading" style="display:none">
         <img src="https://blog.haposoft.com/content/images/2017/08/ajax-loader.gif" alt="Loading..." />
     </div>
     <div class="row">
@@ -181,8 +181,8 @@
     }
 
     function renderData2() {
-        var fromGroup = $("#fromGroup").val();
-        var toGroup = $("#toGroup").val();
+        var fromGroup = parseInt($("#fromGroup").val(), 10);
+        var toGroup = parseInt($("#toGroup").val(), 10);
         $("#fromGroup").css("border", "1px solid #ced4da");
         $("#toGroup").css("border", "1px solid #ced4da");
 
