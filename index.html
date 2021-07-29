@@ -9,14 +9,16 @@
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <style>
         #loading {
-            display: block;
+            display: flex;
             top: 0;
             bottom: 0;
+            justify-content: center;
+            align-items: center;
             z-index: 1000000;
             opacity: 1;
             display: block;
             top: calc(50% - 100px);
-            left: calc(50% - 200px);
+            left: calc(50% - 150px);
             position: absolute;
             z-index: 999999;
         }
@@ -90,17 +92,13 @@
 <body class="container">
     <div id="loading" style="display:none">
         <div class="spinner">
-
             <div class="spinner-text">
                 Loading
             </div>
-
             <div class="spinner-component red">
             </div>
-
             <div class="spinner-component green">
             </div>
-
             <div class="spinner-component blue">
             </div>
 
@@ -119,11 +117,13 @@
                 <label class="form-label">Đến: </label>
                 <input type="text" name="toGroup" id="toGroup" class="form-control comma" maxlength="2" />
             </div>
-            <button class="btn btn-warning" id="btn-submit" onclick="renderData2()">Xem</button>
+            <div class="col-sm-2 offset-md-2 mt-2">
+                <button class="btn btn-warning" id="btn-submit" onclick="renderData2()">Xem</button>
+            </div>
         </div>
     </div>
-    <div class="mt-2 w-100">
-        <table class="table table-bordered table-striped " id="usersTable">
+    <div class="w-80">
+        <table class="table table-bordered table-striped" id="usersTable">
             <thead>
                 <tr>
                     <th class='text-center' style="width:10%">STT</th>
