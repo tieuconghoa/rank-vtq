@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rank VTTQ</title>
+    <link href="https://vothan3q.playfun.vn/templates/vothan3q/favicon1.ico" type="image/x-icon" rel="shortcut icon" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <style>
@@ -289,7 +290,7 @@
                     JSON.parse(oldData).forEach((itemOld, keyOld) => {
                         $("#table")
                             .append(
-                                `<tr class="item"><td class='text-center'>${keyOld+1}</td><td class='text-center'>${itemOld.name}</td><td class='text-center'>${itemOld.areaName}</td><td class='text-center chenh-lenh'>${String(itemOld.value).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</td></tr>`
+                                `<tr class="item"><td class='text-center'>${keyOld+1}</td><td class='text-center'>${itemOld.name}</td><td class='text-center'>${itemOld.areaName}</td><td class='text-center'>${String(itemOld.value).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</td></tr>`
                             )
                     })
                 }
