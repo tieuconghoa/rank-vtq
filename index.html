@@ -6,103 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rank VTTQ</title>
     <link href="https://vothan3q.playfun.vn/templates/vothan3q/favicon1.ico" type="image/x-icon" rel="shortcut icon" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://www.w3schools.com/lib/w3.js"></script>
-    <style>
-        #loading {
-            display: flex;
-            top: 0;
-            bottom: 0;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000000;
-            opacity: 1;
-            display: block;
-            top: calc(50% - 100px);
-            left: calc(50% - 150px);
-            position: absolute;
-            z-index: 999999;
-        }
-        
-        .spinner {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 300px;
-            height: 300px;
-            position: relative;
-        }
-        
-        .spinner-text {
-            font-size: 2rem;
-            animation: opaque 2000ms ease-in-out infinite;
-        }
-        
-        .spinner-component {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 10px solid transparent;
-            mix-blend-mode: hue;
-        }
-        
-        .red {
-            border-top: 10px solid red;
-            animation: load 1300ms linear infinite;
-            z-index: -1;
-        }
-        
-        .green {
-            border-top: 10px solid green;
-            animation: load 1600ms ease-out infinite;
-            z-index: -3;
-        }
-        
-        .blue {
-            border-top: 10px solid blue;
-            animation: load 1900ms ease-in infinite;
-            z-index: -2;
-        }
-        
-        @keyframes load {
-            from {
-                transform: rotate(0);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        
-        @keyframes opaque {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            25%,
-            75% {
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 0.1;
-            }
-        }
-        
-        .header {
-            position: sticky;
-            position: -webkit-sticky;
-            background-color: white;
-            border-top: 0px solid white !important;
-            top: 0;
-        }
-        
-        .usersTable {
-            position: relative;
-            height: 550px;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-    </style>
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+    <script src="./static/js/w3.js"></script>
+    <link href="./static/css/style.css" rel="stylesheet" />
 </head>
 
 <body class="container">
@@ -154,7 +60,7 @@
         </table>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="./static/js/jquery-3.5.1.min.js"></script>
 
 <script>
     $('.comma').on('input', function() {
@@ -173,7 +79,7 @@
     const url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
     var lastestGroup = 0;
     $(document).ready(() => {
-        getLastestGroup();
+        // getLastestGroup();
         renderData(1);
 
     });
