@@ -2,7 +2,6 @@ const axios = require('axios');
 const fs = require("fs");
 const express = require("express");
 const bodyParser = require('body-parser');
-
 const path = require('path');
 
 const array = [{
@@ -174,23 +173,18 @@ app.get("/listGroup", (req, res) => {
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
-
+// writeFile();
 async function writeFile() {
 
     var data = [];
-    array.forEach(async(element) => {
-        var dataPush = await get_data(encodeURIComponent(element));
-        data.push(dataPush);
-    });
+    var dataPush = await get_data(26, 26);
+    data.push(dataPush);
     var filename = "data/bxh_" + Date.now() + ".json";
-    setTimeout(() => {
-        data = "[" + data + "]";
-        fs.writeFile(filename, data, (err) => {
-            if (err) {
-                return console.error(err);
-            }
-        });
-    }, 3000);
+    fs.writeFile(filename, data, (err) => {
+        if (err) {
+            return console.error(err);
+        }
+    });
 };
 
 async function get_data(fromGroup, toGroup) {
