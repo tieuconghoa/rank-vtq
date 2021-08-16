@@ -109,6 +109,10 @@ const array = [{
     "group": "26",
     "server_start": "201",
     "server_end": "205"
+}, {
+    "group": "27",
+    "server_start": "206",
+    "server_end": "210"
 }]
 
 var app = express();
@@ -125,7 +129,7 @@ app.use(bodyParser.json());
 
 
 // Add headers
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
@@ -143,13 +147,13 @@ app.use(function(req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-app.post("/api/data", async(req, res) => {
+app.post("/api/data", async (req, res) => {
     let fromGroup = parseInt(req.body.fromGroup, 10);
     let toGroup = parseInt(req.body.toGroup, 10);
     var dataPush = await get_data(fromGroup, toGroup);
     res.json(dataPush);
 })
-app.get("/api/:id", async(req, res) => {
+app.get("/api/:id", async (req, res) => {
     var id = req.params.id;
 
     res.json(await get_data(id));
@@ -178,7 +182,7 @@ app.get("/", (req, res) => {
 async function writeFile() {
 
     var data = [];
-    array.forEach(async(element) => {
+    array.forEach(async (element) => {
         var dataPush = await get_data(encodeURIComponent(element));
         data.push(dataPush);
     });
@@ -195,10 +199,9 @@ async function writeFile() {
 
 async function get_data(fromGroup, toGroup) {
     var server_list = "";
-    for (var i = fromGroup; i <= toGroup; i++) {
+    for (let i = fromGroup; i <= toGroup; i++) {
         let server = array.find(ele => ele.group == i);
-
-        for (j = server.server_start; j <= server.server_end; j++) {
+        for (var j = parseInt(server.server_start, 10); j <= parseInt(server.server_end, 10); j++) {
             server_list += "," + j;
         }
     }
