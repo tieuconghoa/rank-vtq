@@ -87,7 +87,7 @@
 
 .usersTable {
     position: relative;
-    height: 550px;
+    height: 650px;
     overflow-y: auto;
     overflow-x: hidden;
 }
