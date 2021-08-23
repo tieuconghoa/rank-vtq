@@ -3,6 +3,7 @@ const fs = require("fs");
 const express = require("express");
 const bodyParser = require('body-parser');
 const path = require('path');
+// const cron = require('node-cron');
 
 const array = [{
     "group": "1",
@@ -112,6 +113,10 @@ const array = [{
     "group": "27",
     "server_start": "206",
     "server_end": "210"
+}, {
+    "group": "28",
+    "server_start": "211",
+    "server_end": "215"
 }]
 
 var app = express();
@@ -146,6 +151,11 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+
+// cron.schedule('0 21 21 8 *', function() {
+//     writeFile()
+//   });
+
 app.post("/api/data", async (req, res) => {
     let fromGroup = parseInt(req.body.fromGroup, 10);
     let toGroup = parseInt(req.body.toGroup, 10);
@@ -166,7 +176,7 @@ app.get("/oldData", (req, res) => {
 });
 
 app.get("/newData", (req, res) => {
-    let rawdata = fs.readFileSync(__dirname + '/data/bxh_1619618400004.json');
+    let rawdata = fs.readFileSync(__dirname + '/data/bxh_1629554401291.json');
     let data = JSON.parse(rawdata);
     res.json(data);
 });
@@ -181,7 +191,7 @@ app.get("/", (req, res) => {
 async function writeFile() {
 
     var data = [];
-    var dataPush = await get_data(26, 26);
+    var dataPush = await get_data(27, 27);
     data.push(dataPush);
     var filename = "data/bxh_" + Date.now() + ".json";
     fs.writeFile(filename, data, (err) => {
