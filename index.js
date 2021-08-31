@@ -117,6 +117,10 @@ const array = [{
     "group": "28",
     "server_start": "211",
     "server_end": "215"
+}, {
+    "group": "29",
+    "server_start": "216",
+    "server_end": "220"
 }]
 
 var app = express();
@@ -152,7 +156,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-// cron.schedule('0 21 21 8 *', function() {
+// cron.schedule('0 21 1 9 *', function() {
 //     writeFile()
 //   });
 
@@ -191,7 +195,7 @@ app.get("/", (req, res) => {
 async function writeFile() {
 
     var data = [];
-    var dataPush = await get_data(27, 27);
+    var dataPush = await get_data(28, 28);
     data.push(dataPush);
     var filename = "data/bxh_" + Date.now() + ".json";
     fs.writeFile(filename, data, (err) => {
