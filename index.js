@@ -121,6 +121,10 @@ const array = [{
     "group": "29",
     "server_start": "216",
     "server_end": "220"
+},{
+    "group": "30",
+    "server_start": "221",
+    "server_end": "225"
 }]
 
 var app = express();
@@ -195,7 +199,7 @@ app.get("/", (req, res) => {
 async function writeFile() {
 
     var data = [];
-    var dataPush = await get_data(28, 28);
+    var dataPush = await get_data(30, 30);
     data.push(dataPush);
     var filename = "data/bxh_" + Date.now() + ".json";
     fs.writeFile(filename, data, (err) => {
