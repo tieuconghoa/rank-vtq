@@ -48,7 +48,7 @@ function renderData2() {
     $("#fromGroup").css("border", "1px solid #ced4da");
     $("#toGroup").css("border", "1px solid #ced4da");
 
-    if (fromGroup <= toGroup && toGroup <= 30) {
+    if (fromGroup <= toGroup && toGroup <= 33) {
         $.ajax({
             url: `${url}/api/data`,
             method: "post",

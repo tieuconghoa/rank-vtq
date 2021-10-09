@@ -125,6 +125,18 @@ const array = [{
     "group": "30",
     "server_start": "221",
     "server_end": "225"
+},{
+    "group": "31",
+    "server_start": "226",
+    "server_end": "230"
+},{
+    "group": "32",
+    "server_start": "231",
+    "server_end": "235"
+},{
+    "group": "33",
+    "server_start": "236",
+    "server_end": "240"
 }]
 
 var app = express();
