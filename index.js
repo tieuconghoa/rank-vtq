@@ -3,7 +3,7 @@ const fs = require("fs");
 const express = require("express");
 const bodyParser = require('body-parser');
 const path = require('path');
-// const cron = require('node-cron');
+const cron = require('node-cron');
 
 const array = [{
     "group": "1",
@@ -45,98 +45,6 @@ const array = [{
     "group": "10",
     "server_start": "116",
     "server_end": "125"
-}, {
-    "group": "11",
-    "server_start": "126",
-    "server_end": "130"
-}, {
-    "group": "12",
-    "server_start": "131",
-    "server_end": "135"
-}, {
-    "group": "13",
-    "server_start": "136",
-    "server_end": "140"
-}, {
-    "group": "14",
-    "server_start": "141",
-    "server_end": "145"
-}, {
-    "group": "15",
-    "server_start": "146",
-    "server_end": "150"
-}, {
-    "group": "16",
-    "server_start": "151",
-    "server_end": "155"
-}, {
-    "group": "17",
-    "server_start": "156",
-    "server_end": "160"
-}, {
-    "group": "18",
-    "server_start": "161",
-    "server_end": "165"
-}, {
-    "group": "19",
-    "server_start": "166",
-    "server_end": "170"
-}, {
-    "group": "20",
-    "server_start": "171",
-    "server_end": "175"
-}, {
-    "group": "21",
-    "server_start": "176",
-    "server_end": "180"
-}, {
-    "group": "22",
-    "server_start": "181",
-    "server_end": "185"
-}, {
-    "group": "23",
-    "server_start": "186",
-    "server_end": "190"
-}, {
-    "group": "24",
-    "server_start": "191",
-    "server_end": "195"
-}, {
-    "group": "25",
-    "server_start": "196",
-    "server_end": "200"
-}, {
-    "group": "26",
-    "server_start": "201",
-    "server_end": "205"
-}, {
-    "group": "27",
-    "server_start": "206",
-    "server_end": "210"
-}, {
-    "group": "28",
-    "server_start": "211",
-    "server_end": "215"
-}, {
-    "group": "29",
-    "server_start": "216",
-    "server_end": "220"
-},{
-    "group": "30",
-    "server_start": "221",
-    "server_end": "225"
-},{
-    "group": "31",
-    "server_start": "226",
-    "server_end": "230"
-},{
-    "group": "32",
-    "server_start": "231",
-    "server_end": "235"
-},{
-    "group": "33",
-    "server_start": "236",
-    "server_end": "240"
 }]
 
 var app = express();
@@ -172,7 +80,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-// cron.schedule('0 21 1 9 *', function() {
+// cron.schedule('0 21 8 11 *', function() {
 //     writeFile()
 //   });
 
@@ -211,7 +119,7 @@ app.get("/", (req, res) => {
 async function writeFile() {
 
     var data = [];
-    var dataPush = await get_data(30, 30);
+    var dataPush = await get_data(35, 35);
     data.push(dataPush);
     var filename = "data/bxh_" + Date.now() + ".json";
     fs.writeFile(filename, data, (err) => {
@@ -223,11 +131,25 @@ async function writeFile() {
 
 async function get_data(fromGroup, toGroup) {
     var server_list = "";
-    for (let i = fromGroup; i <= toGroup; i++) {
-        let server = array.find(ele => ele.group == i);
-        for (var j = parseInt(server.server_start, 10); j <= parseInt(server.server_end, 10); j++) {
-            server_list += "," + j;
-        }
+    serverStart = 0;
+    serverEnd = 0;
+    if (fromGroup > 10) {
+        serverStart = (fromGroup + 15) * 5 - 4;
+        serverEnd = (toGroup + 15) * 5;
+    } else if(toGroup < 10) {
+        serverStart = parseInt(array.find(ele => ele.group == fromGroup).server_start, 10);
+        serverEnd = parseInt(array.find(ele => ele.group == toGroup).server_end, 10);
+    } 
+    else if(fromGroup < 11 && toGroup > 10) {
+        serverStart = parseInt(array.find(ele => ele.group == fromGroup).server_start, 10);
+        serverEnd = (toGroup + 15) * 5;
+    } else {
+        serverStart = 1;
+        serverEnd = 400;
+    }
+
+    for (var j = serverStart; j <= serverEnd; j++) {
+        server_list += "," + j;
     }
 
     server_list = encodeURIComponent(server_list.substring(1));
@@ -250,7 +172,6 @@ async function get_data(fromGroup, toGroup) {
     }).then(response => {
 
         data = JSON.stringify(response.data.data.ranks);
-
     }).catch(error => {
         console.log(error);
     });
