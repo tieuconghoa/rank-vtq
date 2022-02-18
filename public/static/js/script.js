@@ -36,7 +36,7 @@ function renderData(id) {
         JSON.parse(oldData).forEach((itemOld, keyOld) => {
             $("#table")
                 .append(
-                    `<tr><td class='text-center'>${keyOld+1}</td><td class='text-center'>${itemOld.name}</td><td class='text-center'>${itemOld.areaName}</td><td class='text-center chenh-lenh'>${String(itemOld.value).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</td></tr>`
+                    `<tr><td class='text-center'>${keyOld+1}</td><td class='text-center'><div class='name-character' onclick="copyName(this)">${itemOld.name}</div></td><td class='text-center'>${itemOld.areaName}</td><td class='text-center chenh-lenh'>${String(itemOld.value).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</td></tr>`
                 )
         })
     })
@@ -65,7 +65,7 @@ function renderData2() {
                     JSON.parse(oldData).forEach((itemOld, keyOld) => {
                         $("#table")
                             .append(
-                                `<tr class="item"><td class='text-center'>${keyOld+1}</td><td class='text-center'>${itemOld.name}</td><td class='text-center'>${itemOld.areaName}</td><td class='text-center'>${String(itemOld.value).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</td></tr>`
+                                `<tr class="item"><td class='text-center'>${keyOld+1}</td><td class='text-center'><div class='name-character' onclick="copyName(this)">${itemOld.name}</div></td><td class='text-center'>${itemOld.areaName}</td><td class='text-center'>${String(itemOld.value).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</td></tr>`
                             )
                     })
                 }
@@ -80,27 +80,19 @@ function renderData2() {
 
 function getDateTime() {
     var now = new Date();
-    var year = now.getFullYear();
-    var month = now.getMonth() + 1;
-    var day = now.getDate();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
-    if (month.toString().length == 1) {
-        month = '0' + month;
-    }
-    if (day.toString().length == 1) {
-        day = '0' + day;
-    }
-    if (hour.toString().length == 1) {
-        hour = '0' + hour;
-    }
-    if (minute.toString().length == 1) {
-        minute = '0' + minute;
-    }
-    if (second.toString().length == 1) {
-        second = '0' + second;
-    }
-    var dateTime = hour + ':' + minute + ':' + second + ' ' + day + '/' + month + '/' + year;
-    return dateTime;
+    var time = now.toLocaleString('vi-VN', {
+        weekday: 'short', // long, short, narrow
+        day: 'numeric', // numeric, 2-digit
+        year: 'numeric', // numeric, 2-digit
+        month: 'long', // numeric, 2-digit, long, short, narrow
+        hour: 'numeric', // numeric, 2-digit
+        minute: 'numeric', // numeric, 2-digit
+        second: 'numeric', // numeric, 2-digit
+    })
+
+    return time;
+}
+
+function copyName(e){
+    navigator.clipboard.writeText(e.innerText);
 }
