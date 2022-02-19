@@ -94,5 +94,14 @@ function getDateTime() {
 }
 
 function copyName(e){
+    let span = document.createElement("span");
+    span.innerHTML = "Copied";
+    span.classList.add('copied');
     navigator.clipboard.writeText(e.innerText);
+    
+    if(e.childElementCount == 0) {
+        e.appendChild(span);
+        setTimeout(() => {e.removeChild(span)} , 200);
+    }
+    
 }
