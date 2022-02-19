@@ -101,7 +101,7 @@ function copyName(e){
     
     if(e.childElementCount == 0) {
         e.appendChild(span);
-        setTimeout(() => {e.removeChild(span)} , 200);
+        setTimeout(() => {e.removeChild(span)} , 300);
     }
     
 }
