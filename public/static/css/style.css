@@ -92,6 +92,7 @@
 }
 
 .name-character {
+    white-space: pre;
     display: inline-block;
     border-bottom: 1px dotted black;
     padding: -0.5px;

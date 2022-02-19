@@ -33,7 +33,7 @@ function renderData(id) {
 
     $.getJSON(`${url}/api/${id}`, oldData => {
         $("#table").empty();
-        JSON.parse(oldData).forEach((itemOld, keyOld) => {
+        oldData.forEach((itemOld, keyOld) => {
             $("#table")
                 .append(
                     `<tr><td class='text-center'>${keyOld+1}</td><td class='text-center'><div class='name-character' onclick="copyName(this)">${itemOld.name}</div></td><td class='text-center'>${itemOld.areaName}</td><td class='text-center chenh-lenh'>${String(itemOld.value).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</td></tr>`
@@ -62,7 +62,7 @@ function renderData2() {
                     $("#fromGroup").css("border", "1px solid red");
                     $("#toGroup").css("border", "1px solid red");
                 } else {
-                    JSON.parse(oldData).forEach((itemOld, keyOld) => {
+                    oldData.forEach((itemOld, keyOld) => {
                         $("#table")
                             .append(
                                 `<tr class="item"><td class='text-center'>${keyOld+1}</td><td class='text-center'><div class='name-character' onclick="copyName(this)">${itemOld.name}</div></td><td class='text-center'>${itemOld.areaName}</td><td class='text-center'>${String(itemOld.value).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</td></tr>`

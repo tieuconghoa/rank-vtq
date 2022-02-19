@@ -171,7 +171,7 @@ async function get_data(fromGroup, toGroup) {
         "credentials": "include"
     }).then(response => {
 
-        data = JSON.stringify(response.data.data.ranks);
+        data = response.data.data.ranks;
     }).catch(error => {
         console.log(error);
     });
